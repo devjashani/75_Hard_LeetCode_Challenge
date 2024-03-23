@@ -1,0 +1,25 @@
+class Solution {
+    public int longestPalindrome(String s) {
+        if(s.length() == 1) return 1;
+
+        HashMap<Character, Integer> map = new HashMap<>();
+        int ans = 0;
+        Boolean isOddExists = false;
+
+        for(int i=0; i<s.length(); i++){
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        } 
+
+        for(int i : map.values()){
+            if(i % 2 == 0){
+                ans += i;
+            }
+            else{
+                ans += i-1;
+                isOddExists = true;
+            }
+            
+        }
+        return isOddExists ? ans + 1 : ans; 
+    }
+}
